@@ -2,3 +2,15 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
+
+h1{
+    @apply text-8xl sm:text-9xl font-extrabold text-blue-900
+}
+
+h2{
+    @apply text-4xl sm:text-6xl font-semibold text-gray-800
+}
+
+h3{
+    @apply text-2xl sm:text-4xl font-extralight
+}
