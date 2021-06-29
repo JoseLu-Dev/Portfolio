@@ -1,16 +1,24 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 /* You can add global styles to this file, and also import other style files */
 
-h1{
-    @apply text-8xl sm:text-9xl font-extrabold text-blue-900
+h1 {
+    @apply text-8xl sm:text-9xl font-extrabold text-blue;
 }
 
-h2{
-    @apply text-4xl sm:text-6xl font-semibold text-gray-800
+h2 {
+    @apply text-4xl sm:text-6xl font-semibold text-gray-800 dark:text-gray-200;
 }
 
-h3{
-    @apply text-2xl sm:text-4xl font-extralight
+h3 {
+    @apply text-2xl sm:text-4xl dark:text-white;
+}
+
+.separator {
+    @apply w-full h-px bg-light-darkest
+}
+
+.separator-vertical {
+    @apply w-px h-full bg-light-darkest
 }

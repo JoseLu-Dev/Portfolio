@@ -1,5 +1,4 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
-<nav class="absolute w-screen z-10 shadow">
+<nav class="absolute w-screen z-10 shadow backdrop-filter backdrop-blur-sm bg-light-lightest dark:bg-dark-dark bg-opacity-50">
     <div class="mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -27,7 +26,7 @@
             </div>
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-center">
-                    <div class="h-10 w-auto">
+                    <div class="h-10 w-10">
                         <img class="rounded-full hidden dark:block w-full h-full" src="assets/jld_day.png"
                             alt="Workflow">
                         <img class="rounded-full block dark:hidden w-full h-full" src="assets/jld_night.png"
@@ -40,25 +39,24 @@
                     <!-- toggle -->
                     <div class="relative">
                         <!-- input -->
-                        <input id="toogleA" type="checkbox" class="sr-only" (click)="toggleNightMode()"/>
+                        <input id="toogleA" type="checkbox" class="sr-only" (click)="toggleNightMode()" />
                         <!-- line -->
-                        <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
+                        <div class="w-10 h-4 dark:bg-gray-200 bg-gray-500 rounded-full shadow-inner"></div>
                         <!-- dot -->
-                        <div class="dot transform absolute w-6 h-6 bg-white rounded-full shadow -left-1 -top-1 transition"></div>
+                        <div
+                            class="dot absolute w-6 h-6 bg-light-light dark:bg-dark-darkest rounded-full shadow -left-1 -top-1 transition">
+                        </div>
                     </div>
                 </label>
             </div>
             <div class="ml-auto hidden sm:block sm:ml-6 justify-end">
                 <div class="flex space-x-4">
 
-                    <a href="#"
-                        class="text-gray-600 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                    <a href="#" class="text-sm dark:text-white">Projects</a>
 
-                    <a href="#"
-                        class="text-gray-600 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                    <a href="#" class="text-sm dark:text-white">Skills</a>
 
-                    <a href="#"
-                        class="text-gray-600 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <a href="#" class="text-sm dark:text-white">Contact</a>
 
                 </div>
             </div>
@@ -69,14 +67,13 @@
     <div [ngClass]="{'max-h-0 ': !showMenu, 'max-h-40': showMenu}"
         class="sm:hidden transition-all duration-1000 ease-in-out overflow-hidden opacity-80 " id="mobile-menu">
         <div class="p-2 pt-0 flex flex-col gap-1">
-            <a href="#"
-                class="text-gray-600 hover:bg-blue-900 bg-blue-100 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+            <a href="#" class="text-base dark:text-white">Projects</a>
+            <div class="separator"></div>
 
-            <a href="#"
-                class="text-gray-600 hover:bg-blue-900 bg-blue-100 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+            <a href="#" class="text-base dark:text-white">Skills</a>
+            <div class="separator"></div>
 
-            <a href="#"
-                class="text-gray-600 hover:bg-blue-900 bg-blue-100 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            <a href="#" class="text-base dark:text-white">Contact</a>
         </div>
     </div>
 </nav>

@@ -1,4 +1,8 @@
 input:checked ~ .dot {
-    transform: translateX(100%);
-    background-color: #48bb78;
-  }
+  transform: translateX(100%);
+}
+
+a {
+  @apply font-medium text-base
+  hover:bg-blue hover:text-white px-3 py-2 rounded-md;
+}

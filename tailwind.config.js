@@ -15,6 +15,25 @@ module.exports = {
     extend: {
       fontFamily: {
         'lato': ['Lato', 'sans-serif']
+      },
+      colors: {
+        dark: {
+          darkest: '#202225',
+          dark: '#2F3136',
+          DEFAULT: '#36393F',
+          light: '#72767D',
+          lightest: '#DBDCDD',
+        },
+        light: {
+          darkest:'#919191',
+          dark: '#CCCCCC',
+          DEFAULT: '#EDEDED',
+          light: '#F5F5F5',
+          lightest:'#FFFFFF',
+        },
+        blue: {
+          DEFAULT: '#0077b6'
+        }
       }
     },
   },
