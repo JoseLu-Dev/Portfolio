@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<div [ngClass]="{'dark': isNightModeActive()}">
+    <div class="bg-gray-50 dark:bg-gray-800">
+        <router-outlet></router-outlet>
+    </div>
+</div>
