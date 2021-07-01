@@ -34,6 +34,10 @@ export class NavbarComponent implements OnInit {
     this.nightModeService.toggleNightMode();
   }
 
+  isNightModeActive(){
+    return this.nightModeService.nightMode;
+  }
+
   setLanguageForUse(language: string): void {
     this.languageService.setLanguageForUse(language);
   }
