@@ -1,4 +1,5 @@
-<nav class="absolute w-screen z-10 shadow backdrop-filter backdrop-blur-sm bg-light-lightest dark:bg-dark-dark bg-opacity-50">
+<nav
+    class="absolute w-screen z-10 shadow backdrop-filter backdrop-blur-sm bg-light-lightest dark:bg-dark-dark bg-opacity-50">
     <div class="mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -24,7 +25,10 @@
                     </svg>
                 </button>
             </div>
-            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+
+            <!--Brand icon-->
+            <div
+                class="flex flex-1 absolute right-1/2 translate-x-1/2 sm:right-0 sm:translate-x-0 sm:static sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-center">
                     <div class="h-10 w-10">
                         <img class="rounded-full hidden dark:block w-full h-full" src="assets/jld_day.png"
@@ -34,12 +38,29 @@
                     </div>
                 </div>
             </div>
+
+            <!--Language change-->
+            <div class="ml-auto sm:ml-0 flex">
+                <ng-select [items]="getLanguages()" [formControl]="languageControl" [searchable]="false"
+                    class="pl-2 pr-1 py-1 rounded-md bg-white dark:bg-dark-darkest dark:text-white w-20 text-base mr-6 shadow">
+                    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                        <div *ngIf="index != 0" class="separator"></div>
+                            <div class="dark:bg-dark-darkest dark:text-white text-base px-4 py-2 bg-white hover:bg-blue dark:hover:bg-blue"
+                                [ngClass]="{'border-l-4 border-blue': item == languageControl.value}">
+                                {{item}}
+                            </div>
+                        
+                    </ng-template>
+                </ng-select>
+            </div>
+
+            <!--Night/light mode change-->
             <div>
-                <label for="toogleA" class="flex items-center cursor-pointer">
+                <label for="toogleNight" class="flex items-center cursor-pointer">
                     <!-- toggle -->
                     <div class="relative">
                         <!-- input -->
-                        <input id="toogleA" type="checkbox" class="sr-only" (click)="toggleNightMode()" />
+                        <input id="toogleNight" type="checkbox" class="sr-only" (click)="toggleNightMode()" />
                         <!-- line -->
                         <div class="w-10 h-4 dark:bg-gray-200 bg-gray-500 rounded-full shadow-inner"></div>
                         <!-- dot -->
@@ -52,11 +73,11 @@
             <div class="ml-auto hidden sm:block sm:ml-6 justify-end">
                 <div class="flex space-x-4">
 
-                    <a href="#" class="text-sm dark:text-white">Projects</a>
+                    <a href="#" class="text-sm dark:text-white">{{'NAVBAR.projects' | translate}}</a>
 
-                    <a href="#" class="text-sm dark:text-white">Skills</a>
+                    <a href="#" class="text-sm dark:text-white">{{'NAVBAR.skills' | translate}}</a>
 
-                    <a href="#" class="text-sm dark:text-white">Contact</a>
+                    <a href="#" class="text-sm dark:text-white">{{'NAVBAR.contact' | translate}}</a>
 
                 </div>
             </div>
@@ -67,13 +88,13 @@
     <div [ngClass]="{'max-h-0 ': !showMenu, 'max-h-40': showMenu}"
         class="sm:hidden transition-all duration-1000 ease-in-out overflow-hidden opacity-80 " id="mobile-menu">
         <div class="p-2 pt-0 flex flex-col gap-1">
-            <a href="#" class="text-base dark:text-white">Projects</a>
+            <a href="#" class="text-base dark:text-white">{{'NAVBAR.projects' | translate}}</a>
             <div class="separator"></div>
 
-            <a href="#" class="text-base dark:text-white">Skills</a>
+            <a href="#" class="text-base dark:text-white">{{'NAVBAR.skills' | translate}}</a>
             <div class="separator"></div>
 
-            <a href="#" class="text-base dark:text-white">Contact</a>
+            <a href="#" class="text-base dark:text-white">{{'NAVBAR.contact' | translate}}</a>
         </div>
     </div>
 </nav>

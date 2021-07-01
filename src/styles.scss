@@ -16,9 +16,43 @@ h3 {
 }
 
 .separator {
-    @apply w-full h-px bg-light-darkest
+    @apply w-full h-px bg-light-darkest;
 }
 
 .separator-vertical {
-    @apply w-px h-full bg-light-darkest
+    @apply w-px h-full bg-light-darkest;
+}
+
+ng-select .ng-select-container span.ng-arrow-wrapper span.ng-arrow {
+    mask-image: url("assets/icons/expand_more_24dp.svg");
+    mask-size: contain;
+
+    -webkit-mask-image: url("assets/icons/expand_more_24dp.svg");
+    -webkit-mask-size: contain;
+
+    background-color: #0077b6;
+
+    height: 30px;
+    width: 30px;
+}
+
+ng-select .ng-select-container span.ng-arrow-wrapper{
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 30px;
+}
+
+/* Hide default cross */
+.ng-select span.ng-clear-wrapper span.ng-clear {
+    font-size: 0;
+    background-color: #00000000
+}
+
+.ng-value{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+ng-select .ng-dropdown-panel-items {
+    @apply z-10 shadow rounded-md
 }

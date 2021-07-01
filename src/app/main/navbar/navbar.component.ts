@@ -1,5 +1,7 @@
+import { LanguageService } from './../../services/language.service';
 import { NightModeService } from './../../services/night-mode.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -10,16 +12,38 @@ export class NavbarComponent implements OnInit {
 
   showMenu = false;
 
-  constructor(private nightModeService: NightModeService) { }
+  languageControl = new FormControl();
+
+  constructor(
+    private nightModeService: NightModeService,
+    private languageService: LanguageService) { }
 
   ngOnInit(): void {
+    this.languageControl.setValue(this.getCurrentLanguage());
+    this.languageControl.valueChanges.subscribe(language => {
+      if(!language){return;}
+      this.setLanguageForUse(language);
+    })
   }
 
-  toggleNavbar(){
+  toggleNavbar() {
     this.showMenu = !this.showMenu;
   }
 
-  toggleNightMode(){
+  toggleNightMode() {
     this.nightModeService.toggleNightMode();
   }
+
+  setLanguageForUse(language: string): void {
+    this.languageService.setLanguageForUse(language);
+  }
+
+  getLanguages(): string[] {
+    return this.languageService.getLanguages();
+  }
+
+  getCurrentLanguage(): string {
+    return this.languageService.getCurrentLanguage();
+  }
+  
 }
