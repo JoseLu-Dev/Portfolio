@@ -26,7 +26,6 @@ export class LanguageService {
   }
 
   getCurrentLanguage(): string{
-    console.log(this.translateService.currentLang)
     return this.translateService.currentLang;
   }
 }
