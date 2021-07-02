@@ -1,5 +1,5 @@
-import { LanguageService } from './../../services/language.service';
-import { NightModeService } from './../../services/night-mode.service';
+import { LanguageService } from '../../services/language.service';
+import { NightModeService } from '../../services/night-mode.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 

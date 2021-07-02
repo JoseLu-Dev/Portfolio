@@ -36,7 +36,7 @@ ng-select .ng-select-container span.ng-arrow-wrapper span.ng-arrow {
     width: 30px;
 }
 
-ng-select .ng-select-container span.ng-arrow-wrapper{
+ng-select .ng-select-container span.ng-arrow-wrapper {
     margin-top: auto;
     margin-bottom: auto;
     height: 30px;
@@ -45,14 +45,22 @@ ng-select .ng-select-container span.ng-arrow-wrapper{
 /* Hide default cross */
 .ng-select span.ng-clear-wrapper span.ng-clear {
     font-size: 0;
-    background-color: #00000000
+    background-color: #00000000;
 }
 
-.ng-value{
+.ng-value {
     margin-top: auto;
     margin-bottom: auto;
 }
 
 ng-select .ng-dropdown-panel-items {
-    @apply z-10 shadow rounded-md
+    @apply z-10 shadow rounded-md;
+}
+
+.tooltip {
+    @apply invisible absolute;
+}
+
+.tooltip-wrapper:hover .tooltip {
+    @apply visible z-50;
 }
