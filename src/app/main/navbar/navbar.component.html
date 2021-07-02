@@ -103,13 +103,13 @@
     <div [ngClass]="{'max-h-0 ': !showMenu, 'max-h-40': showMenu}"
         class="sm:hidden transition-all duration-1000 ease-in-out overflow-hidden opacity-80 " id="mobile-menu">
         <div class="p-2 pt-0 flex flex-col gap-1">
-            <a href="#projects" class="nav-button text-base dark:text-white">{{'NAVBAR.projects' | translate}}</a>
+            <a href="#projects" (click)="toggleNavbar()" class="nav-button text-base dark:text-white">{{'NAVBAR.projects' | translate}}</a>
             <div class="separator"></div>
 
-            <a href="#skills" class="nav-button text-base dark:text-white">{{'NAVBAR.skills' | translate}}</a>
+            <a href="#skills" (click)="toggleNavbar()" class="nav-button text-base dark:text-white">{{'NAVBAR.skills' | translate}}</a>
             <div class="separator"></div>
 
-            <a href="#contact" class="nav-button text-base dark:text-white">{{'NAVBAR.contact' | translate}}</a>
+            <a href="#contact" (click)="toggleNavbar()" class="nav-button text-base dark:text-white">{{'NAVBAR.contact' | translate}}</a>
         </div>
     </div>
 </nav>
