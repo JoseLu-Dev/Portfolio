@@ -1,0 +1,11 @@
+{
+    "NAVBAR": {
+        "projects": "Projects",
+        "skills": "Skills",
+        "contact": "Contact"
+    },
+    "INTRODUCTION": {
+        "greetings": "HELLO, MY NAME IS",
+        "description": "And I am a Full Stack Web Developer"
+    }
+}
