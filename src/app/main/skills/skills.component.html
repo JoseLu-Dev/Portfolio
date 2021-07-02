@@ -1,21 +1,20 @@
-<div class="flex flex-wrap flex-col sm:flex-row gap-2 p-4">
-    <div class="flex-grow w-full md:w-5/12 lg:w-3/12 shadow-lg rounded-md bg-light-light dark:bg-dark-dark border-black p-2"
+<div class="flex flex-wrap flex-col sm:flex-row gap-4 px-12">
+    <div class="flex-grow w-full md:w-5/12 lg:w-3/12 shadow-lg rounded-md bg-light-light dark:bg-dark-dark border-black p-2
+    hover:shadow-2xl hover:scale-105 transition"
         *ngFor="let type of skillsTypes">
 
-        <div class="flex gap-2">
+        <div class="flex gap-2 mb-4">
             <img src="{{getSkillTypeIcon(type.icon)}}"
                 alt="{{type.icon}}">
             <p class="dark:text-white font-semibold">{{type.name | value : getCurrentLanguage() | uppercase}}</p>
         </div>
 
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 sm:gap-8 justify-around">
             <div *ngFor="let skill of type.skills">
-                
-                
-                <a href="{{skill.page}}" target="_blank" class="tooltip-wrapper" class="flex-grow tooltip-wrapper">
+                <a href="{{skill.page}}" target="_blank" class="flex-grow tooltip-wrapper flex flex-col">
                     <img class="h-16" src="{{getSkillIcon(skill.icon)}}" alt="{{skill.name}}">
-                    <div class="tooltip -mt-24 flex flex-col">
-                        <span class="bg-blue shadow-lg p-1 rounded z-20">{{skill.name}}</span>
+                    <div class="tooltip -mt-8 flex flex-col place-self-center">
+                        <span class="bg-blue shadow-lg p-1 rounded z-20 text-center">{{skill.name}}</span>
                         <div class="w-3 h-3 self-center rotate-45 bg-blue -mt-2"></div>
                     </div>
                 </a>
