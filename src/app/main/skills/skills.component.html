@@ -1,15 +1,15 @@
 <div class="flex flex-wrap flex-col sm:flex-row gap-2 p-4">
     <div class="flex-grow w-full md:w-5/12 lg:w-3/12 shadow-lg rounded-md bg-light-light dark:bg-dark-dark border-black p-2"
-        *ngFor="let type of skillsTypes | keys">
+        *ngFor="let type of skillsTypes">
 
         <div class="flex gap-2">
-            <img src="{{getSkillTypeIcon((skillsTypes | value : type).icon)}}"
-                alt="{{(skillsTypes | value : type).icon}}">
-            <p class="dark:text-white font-semibold">{{type | uppercase}}</p>
+            <img src="{{getSkillTypeIcon(type.icon)}}"
+                alt="{{type.icon}}">
+            <p class="dark:text-white font-semibold">{{type.name | value : getCurrentLanguage() | uppercase}}</p>
         </div>
 
         <div class="flex flex-wrap gap-2">
-            <div *ngFor="let skill of (skillsTypes | value : type).skills">
+            <div *ngFor="let skill of type.skills">
                 
                 
                 <a href="{{skill.page}}" target="_blank" class="tooltip-wrapper" class="flex-grow tooltip-wrapper">

@@ -1,6 +1,7 @@
 import { NightModeService } from './../../services/night-mode.service';
 import { SkillsService } from './skills.service';
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-skills',
@@ -14,6 +15,7 @@ export class SkillsComponent implements OnInit {
   constructor(
     private skillsService: SkillsService,
     private nightModeService: NightModeService,
+    private languageService: LanguageService
     ) { }
 
   ngOnInit(): void {
@@ -22,8 +24,7 @@ export class SkillsComponent implements OnInit {
 
   getSkills() {
     return this.skillsService.getSkills().subscribe(res =>{
-      console.log(res)
-      this.skillsTypes = res;
+      this.skillsTypes = res['skills'];
     });
   }
 
@@ -32,8 +33,11 @@ export class SkillsComponent implements OnInit {
   }
 
   getSkillTypeIcon(iconName: string) {
-    console.log(this.skillsService.getSkillTypeIconUrl(iconName, this.nightModeService.nightMode))
     return this.skillsService.getSkillTypeIconUrl(iconName, this.nightModeService.nightMode);
+  }
+
+  getCurrentLanguage(): string{
+    return this.languageService.getCurrentLanguage();
   }
 
 }
