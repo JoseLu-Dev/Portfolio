@@ -64,3 +64,7 @@ ng-select .ng-dropdown-panel-items {
 .tooltip-wrapper:hover .tooltip {
     @apply visible z-50;
 }
+
+html {
+    scroll-behavior: smooth;
+}

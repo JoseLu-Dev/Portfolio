@@ -2,7 +2,7 @@ input:checked ~ .dot {
   transform: translateX(100%);
 }
 
-a {
+.nav-button {
   @apply font-medium text-base
   hover:bg-blue hover:text-white px-3 py-2 rounded-md;
 }
