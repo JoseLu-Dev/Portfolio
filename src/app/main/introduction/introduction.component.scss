@@ -1,0 +1,39 @@
+h1 {
+    font-size: 20vw;
+}
+
+h2 {
+    font-size: 10vw;
+}
+
+h3 {
+    font-size: 6vw;
+}
+
+@media (min-width: 640px) {
+    h1 {
+        font-size: 16vw;
+    }
+
+    h2 {
+        font-size: 6vw;
+    }
+
+    h3 {
+        font-size: 4vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 12vw;
+    }
+
+    h2 {
+        font-size: 4vw;
+    }
+
+    h3 {
+        font-size: 2vw;
+    }
+}
