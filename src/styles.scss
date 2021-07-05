@@ -36,6 +36,10 @@ ng-select .ng-select-container span.ng-arrow-wrapper {
     background-color: #00000000;
 }
 
+.ng-select span.ng-clear-wrapper{
+    width: 0px;
+}
+
 .ng-value {
     margin-top: auto;
     margin-bottom: auto;
