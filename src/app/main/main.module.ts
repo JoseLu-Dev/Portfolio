@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SkillsComponent } from './skills/skills.component';
 import { ValuePipe } from './pipes/value.pipe';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ValuePipe } from './pipes/value.pipe';
     IntroductionComponent,
     SkillsComponent,
     KeysPipe,
-    ValuePipe
+    ValuePipe,
+    ProjectsComponent
   ],
   imports: [
     CommonModule,

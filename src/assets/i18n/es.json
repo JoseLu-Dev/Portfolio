@@ -9,6 +9,9 @@
         "greetings": "HOLA, MI NOMBRE ES",
         "description": "Y soy Desarrollador Web Full Stack"
     },
+    "PROJECTS":{
+        "title": "Proyectos/repositorios de github"
+    },
     "SKILLS":{
         "title": "Tecnologías con las que he trabajado:"
     }

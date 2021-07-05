@@ -1,0 +1,16 @@
+<h4 class="dark:text-white text-center mb-4 sm:mb-8">{{'PROJECTS.title' | translate}}</h4>
+
+<div class="flex flex-wrap gap-4 justify-around">
+
+<div *ngFor="let project of projects" class="flip-card">
+    <div class="flip-card-inner">
+        <div class="flip-card-front bg-light-light dark:bg-dark-dark shadow-lg rounded-md">
+            {{project.name}}
+        </div>
+        <div class="flip-card-back bg-blue shadow-lg rounded-md">
+
+        </div>
+    </div>
+</div>
+
+</div>
