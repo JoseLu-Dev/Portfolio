@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  githubRepoUrl : 'https://raw.githubusercontent.com/JoseLu-Dev/JoseLu-Dev/main'
+  githubUserRepoUrl : 'https://raw.githubusercontent.com/JoseLu-Dev/JoseLu-Dev/main'
 };
 
 /*

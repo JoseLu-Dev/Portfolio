@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment.prod';
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class SkillsService {
 
-  skillsUrl: string = `${environment.githubRepoUrl}/skills.json`;
-  skillsIconsUrl: string = `${environment.githubRepoUrl}/icons/skills-icons`
-  skillsTypesIconsUrl: string = `${environment.githubRepoUrl}/icons/types-icons`
+  skillsUrl: string = `${environment.githubUserRepoUrl}/skills.json`;
+  skillsIconsUrl: string = `${environment.githubUserRepoUrl}/icons/skills-icons`
+  skillsTypesIconsUrl: string = `${environment.githubUserRepoUrl}/icons/types-icons`
 
   constructor(private http: HttpClient) { }
 
