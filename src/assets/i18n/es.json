@@ -7,5 +7,8 @@
     "INTRODUCTION": {
         "greetings": "HOLA, MI NOMBRE ES",
         "description": "Y soy Desarrollador Web Full Stack"
+    },
+    "SKILLS":{
+        "title": "Tecnologías con las que he trabajado:"
     }
 }

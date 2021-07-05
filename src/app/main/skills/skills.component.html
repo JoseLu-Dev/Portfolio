@@ -1,11 +1,11 @@
-<div class="flex flex-wrap flex-col sm:flex-row gap-4 px-3 sm:px-12">
-    <div class="flex-grow w-full md:w-5/12 lg:w-3/12 shadow-lg rounded-md bg-light-light dark:bg-dark-dark border-black p-2
-    hover:shadow-2xl hover:scale-105 transition"
-        *ngFor="let type of skillsTypes">
+<h4 class="dark:text-white text-center mb-4 sm:mb-8">{{'SKILLS.title' | translate}}</h4>
+
+<div class="flex flex-wrap flex-col sm:flex-row gap-4 px-3 sm:px-12 mb-4">
+    <div class="flex-grow w-full md:w-5/12 lg:w-3/12 shadow-lg rounded-md bg-light-light dark:bg-dark-dark border-black p-2 pb-4
+    hover:shadow-2xl hover:scale-105 transition" *ngFor="let type of skillsTypes">
 
         <div class="flex gap-2 mb-4">
-            <img src="{{getSkillTypeIcon(type.icon)}}"
-                alt="{{type.icon}}">
+            <img src="{{getSkillTypeIcon(type.icon)}}" alt="{{type.icon}}">
             <p class="dark:text-white font-semibold">{{type.name | value : getCurrentLanguage() | uppercase}}</p>
         </div>
 
