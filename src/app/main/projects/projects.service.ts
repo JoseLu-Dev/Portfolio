@@ -17,6 +17,7 @@ export class ProjectsService {
         map(repos => {
           repos.forEach(repo => {
             this.getRepoImages(repo.name).subscribe(imagesUrl => {
+              console.log(imagesUrl)
               repo.imagesUrl = imagesUrl;
             });
             this.getRepoTopics(repo.name).subscribe(topics => {

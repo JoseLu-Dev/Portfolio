@@ -23,9 +23,9 @@ export class GithubApiCacheService {
     const userRepos: ObjectWrapper = this.getObjectSaved(this.userReposStorageKey);
 
     const headers: HttpHeaders = new HttpHeaders()
-    if (userRepos) { headers.append('If-Modified-Since', userRepos.dateSaved.toISOString()); }
+    if (userRepos.etag) { headers.append('If-None-Match', userRepos.etag); }
 
-    return this.http.get<Repo[]>(this.userReposUrl, { headers: headers })
+    return this.http.get<Repo[]>(this.userReposUrl, { observe: 'response' as 'body', headers: headers })
       .pipe(
         catchError((error: any) => {
           const errorStatusCode = error['status'];
@@ -36,10 +36,14 @@ export class GithubApiCacheService {
           return of(error);
         }),
         map(res => {
-          if (!modifiedSince) { res = userRepos }
+
+          if (!modifiedSince) { res = userRepos.object }
           else {
+            const etag = res.headers.get('etag');
+            res = res['body'];
             const objectWrapper = new ObjectWrapper();
             objectWrapper.object = res;
+            objectWrapper.etag = etag;
             this.saveObject(this.userReposStorageKey, objectWrapper)
           }
           return res;
@@ -52,13 +56,14 @@ export class GithubApiCacheService {
     let modifiedSince = true;
     const repoTopics: ObjectWrapper = this.getObjectSaved(`${this.repoTopicsStorageKey}${repoName}`);
 
-    const headers: HttpHeaders = new HttpHeaders()
+    let headers: HttpHeaders = new HttpHeaders()
       .set('Accept', 'application/vnd.github.mercy-preview+json')
-    if (repoTopics) { headers.append('If-Modified-Since', repoTopics.dateSaved.toISOString()); }
+
+    if (repoTopics?.etag) { headers = headers.set('If-None-Match', repoTopics.etag); }
 
     return this.http.get(
       `${environment.githubAPIUrl}/repos/${environment.githubUserName}/${repoName}/topics`,
-      { headers: headers }
+      { observe: 'response' as 'body', headers: headers }
     ).pipe(
       catchError((error: any) => {
         const errorStatusCode = error['status'];
@@ -69,10 +74,13 @@ export class GithubApiCacheService {
         return of(error);
       }),
       map(res => {
-        if (!modifiedSince) { res = repoTopics }
+        if (!modifiedSince) { res = repoTopics.object }
         else {
+          const etag = res.headers.get('etag');
+          res = res['body'];
           const objectWrapper = new ObjectWrapper();
           objectWrapper.object = res;
+          objectWrapper.etag = etag;
           this.saveObject(`${this.repoTopicsStorageKey}${repoName}`, objectWrapper)
         }
         return res;
@@ -85,9 +93,13 @@ export class GithubApiCacheService {
     const repoImages: ObjectWrapper = this.getObjectSaved(`${this.repoImagesStorageKey}${repoName}`);
 
     const headers: HttpHeaders = new HttpHeaders()
-    if (repoImages) { headers.append('If-Modified-Since', repoImages.dateSaved.toISOString()); }
+    if (repoImages?.object && repoImages.dateSaved.getMilliseconds() > new Date().setHours(new Date().getHours()+1)) { 
+      return of(repoImages.object); 
+    }
 
-    return this.http.get(`${environment.githubAPIUrl}/repos/${environment.githubUserName}/${repoName}/contents/resources/images`,
+    return this.http.get(
+      `${environment.githubAPIUrl}/repos/${environment.githubUserName}/${repoName}/contents/resources/images`,
+      { observe: 'response' as 'body', headers: headers }
     )
       .pipe(
         catchError((error: any) => {
@@ -99,10 +111,13 @@ export class GithubApiCacheService {
           return of(error);
         }),
         map(res => {
-          if (!modifiedSince) { res = repoImages }
+          if (!modifiedSince) { res = repoImages.object }
           else {
+            const etag = res.headers.get('etag');
+            res = res['body'];
             const objectWrapper = new ObjectWrapper();
             objectWrapper.object = res;
+            objectWrapper.etag = etag;
             this.saveObject(`${this.repoImagesStorageKey}${repoName}`, objectWrapper)
           }
           return res;
@@ -121,14 +136,15 @@ export class GithubApiCacheService {
 }
 
 export class ObjectWrapper {
-  dateSaved: Date = new Date();
+  etag: string = '';
   object: any;
+  dateSaved: Date = new Date();
 
   static fromJSON(wrapperJson: any): ObjectWrapper {
     if (!wrapperJson) { return new ObjectWrapper(); }
 
     const objectWrapper: ObjectWrapper = new ObjectWrapper();
-    objectWrapper.dateSaved = new Date(wrapperJson.dateSaved);
+    objectWrapper.etag = wrapperJson.etag;
     objectWrapper.object = wrapperJson.object;
 
     return objectWrapper;
