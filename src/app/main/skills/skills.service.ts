@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 export class SkillsService {
 
   skillsUrl: string = `${environment.githubUserRepoUrl}/skills.json`;
-  skillsIconsUrl: string = `${environment.githubUserRepoUrl}/icons/skills-icons`
-  skillsTypesIconsUrl: string = `${environment.githubUserRepoUrl}/icons/types-icons`
+  skillsIconsUrl: string = `${environment.githubUserRepoUrl}/resources/icons/skills-icons`
+  skillsTypesIconsUrl: string = `${environment.githubUserRepoUrl}/resources/icons/types-icons`
 
   constructor(private http: HttpClient) { }
 
