@@ -91,7 +91,7 @@ export class GithubApiCacheService {
   }
 
   getRepoBrandImage(repoName: string, callback: (url: string) => void): void {
-    testImage(`${environment.githubRawContentUrl}/${environment.githubUserName}/${repoName}/master/resources/logo.svg`, 700, (url, status) => {
+    testImage(`${environment.githubRawContentUrl}/${environment.githubUserName}/${repoName}/master/resources/logo.svg`, 1000, (url, status) => {
       if (status == 'success') {
         callback(url);
         return;
