@@ -4,6 +4,13 @@ import { Repo } from './repo-model';
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from './projects.service';
 
+import SwiperCore, {
+  Autoplay,
+  Pagination,
+} from 'swiper/core';
+
+SwiperCore.use([Autoplay, Pagination])
+
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
