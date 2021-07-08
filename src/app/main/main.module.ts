@@ -12,25 +12,29 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { SkillsComponent } from './skills/skills.component';
 import { ValuePipe } from './pipes/value.pipe';
 import { ProjectsComponent } from './projects/projects.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
-  declarations: 
-  [
-    MainComponent,
-    NavbarComponent,
-    IntroductionComponent,
-    SkillsComponent,
-    KeysPipe,
-    ValuePipe,
-    ProjectsComponent
-  ],
+  declarations:
+    [
+      MainComponent,
+      NavbarComponent,
+      IntroductionComponent,
+      SkillsComponent,
+      KeysPipe,
+      ValuePipe,
+      ProjectsComponent,
+      AboutMeComponent
+    ],
   imports: [
     CommonModule,
     MainRoutingModule,
     TranslateModule,
     ReactiveFormsModule,
     NgSelectModule,
+    SwiperModule,
   ]
 })
 export class MainModule { }

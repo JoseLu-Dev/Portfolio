@@ -9,10 +9,14 @@
         "greetings": "HOLA, MI NOMBRE ES",
         "description": "Y soy Desarrollador Web Full Stack"
     },
-    "PROJECTS":{
+    "PROJECTS": {
         "title": "Proyectos/repositorios de github"
     },
-    "SKILLS":{
+    "SKILLS": {
         "title": "Tecnologías con las que he trabajado:"
+    },
+    "ABOUT-ME": {
+        "title": "Hola, soy José Luis ",
+        "text": "Me acabo de graduar en el Ciclo Formativo de Grado Superior de Desarrollo de Aplicaciones Multiplataforma. Me encanta aprender nuevas tecnologías y ponerme a prueba haciendo proyectos. Estoy buscando desarrollarme de manera profesional y encontrar mi hueco en la industria."
     }
 }
