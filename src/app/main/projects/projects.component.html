@@ -50,7 +50,7 @@
             </div>
 
             <ng-template #swiper>
-                <swiper [slidesPerView]="1" [pagination]="{clickable: true}" [autoplay]="false">
+                <swiper [slidesPerView]="1" [pagination]="{clickable: true}" [autoplay]="true">
 
                     <ng-template *ngFor="let image of project.imagesUrl" swiperSlide>
                         <img src="{{image.download_url}}" alt="{{image.name}}" 
