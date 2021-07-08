@@ -19,107 +19,72 @@ export class GithubApiCacheService {
   constructor(private http: HttpClient) { }
 
   getUserRepos(): Observable<Repo[]> {
-    let modifiedSince = true;
     const userRepos: ObjectWrapper = this.getObjectSaved(this.userReposStorageKey);
 
-    const headers: HttpHeaders = new HttpHeaders()
-    if (userRepos.etag) { headers.append('If-None-Match', userRepos.etag); }
+    if (userRepos.object && userRepos.dateSaved && userRepos.dateSaved.getTime() > new Date().setHours(new Date().getHours() - 1)) {
+      return of(userRepos.object);
+    }
 
-    return this.http.get<Repo[]>(this.userReposUrl, { observe: 'response' as 'body', headers: headers })
+    return this.http.get<Repo[]>(this.userReposUrl)
       .pipe(
-        catchError((error: any) => {
-          const errorStatusCode = error['status'];
-          switch (errorStatusCode) {
-            case 304:
-              modifiedSince = false;
-          }
-          return of(error);
-        }),
         map(res => {
+          const objectWrapper = new ObjectWrapper();
+          objectWrapper.object = res;
+          this.saveObject(this.userReposStorageKey, objectWrapper)
 
-          if (!modifiedSince) { res = userRepos.object }
-          else {
-            const etag = res.headers.get('etag');
-            res = res['body'];
-            const objectWrapper = new ObjectWrapper();
-            objectWrapper.object = res;
-            objectWrapper.etag = etag;
-            this.saveObject(this.userReposStorageKey, objectWrapper)
-          }
           return res;
         })
       );
   }
 
   getRepoTopics(repoName: string) {
-
-    let modifiedSince = true;
     const repoTopics: ObjectWrapper = this.getObjectSaved(`${this.repoTopicsStorageKey}${repoName}`);
+
+    if (repoTopics.object && repoTopics.dateSaved && repoTopics.dateSaved.getTime() > new Date().setHours(new Date().getHours() - 1)) {
+      return of(repoTopics.object);
+    }
 
     let headers: HttpHeaders = new HttpHeaders()
       .set('Accept', 'application/vnd.github.mercy-preview+json')
 
-    if (repoTopics?.etag) { headers = headers.set('If-None-Match', repoTopics.etag); }
-
     return this.http.get(
-      `${environment.githubAPIUrl}/repos/${environment.githubUserName}/${repoName}/topics`,
-      { observe: 'response' as 'body', headers: headers }
+      `${environment.githubAPIUrl}/repos/${environment.githubUserName}/${repoName}/topics`, { headers: headers }
     ).pipe(
-      catchError((error: any) => {
-        const errorStatusCode = error['status'];
-        switch (errorStatusCode) {
-          case 304:
-            modifiedSince = false;
-        }
-        return of(error);
-      }),
       map(res => {
-        if (!modifiedSince) { res = repoTopics.object }
-        else {
-          const etag = res.headers.get('etag');
-          res = res['body'];
-          const objectWrapper = new ObjectWrapper();
-          objectWrapper.object = res;
-          objectWrapper.etag = etag;
-          this.saveObject(`${this.repoTopicsStorageKey}${repoName}`, objectWrapper)
-        }
+        const objectWrapper = new ObjectWrapper();
+        objectWrapper.object = res;
+        this.saveObject(`${this.repoTopicsStorageKey}${repoName}`, objectWrapper)
+
         return res;
       })
     );
   }
 
   getRepoImages(repoName: string) {
-    let modifiedSince = true;
     const repoImages: ObjectWrapper = this.getObjectSaved(`${this.repoImagesStorageKey}${repoName}`);
 
-    const headers: HttpHeaders = new HttpHeaders()
-    if (repoImages?.object && repoImages.dateSaved.getMilliseconds() > new Date().setHours(new Date().getHours()+1)) { 
-      return of(repoImages.object); 
+    if (repoImages.dateSaved && repoImages.dateSaved.getTime() > new Date().setHours(new Date().getHours() - 1)) {
+      return of(repoImages.object);
     }
 
     return this.http.get(
       `${environment.githubAPIUrl}/repos/${environment.githubUserName}/${repoName}/contents/resources/images`,
-      { observe: 'response' as 'body', headers: headers }
     )
       .pipe(
-        catchError((error: any) => {
+        catchError(error => {
           const errorStatusCode = error['status'];
           switch (errorStatusCode) {
-            case 304:
-              modifiedSince = false;
+            case 404:
+              this.saveObject(`${this.repoImagesStorageKey}${repoName}`, new ObjectWrapper());
+              break;
           }
-          return of(error);
+          return of(null);
         }),
         map(res => {
-          if (!modifiedSince) { res = repoImages.object }
-          else {
-            const etag = res.headers.get('etag');
-            res = res['body'];
-            const objectWrapper = new ObjectWrapper();
-            objectWrapper.object = res;
-            objectWrapper.etag = etag;
-            this.saveObject(`${this.repoImagesStorageKey}${repoName}`, objectWrapper)
-          }
+          const objectWrapper = new ObjectWrapper();
+          objectWrapper.object = res;
+          this.saveObject(`${this.repoImagesStorageKey}${repoName}`, objectWrapper)
+
           return res;
         })
       );
@@ -140,6 +105,7 @@ export class GithubApiCacheService {
   }
 
   saveObject(id: string, object: ObjectWrapper) {
+    object.dateSaved = new Date();
     localStorage.setItem(id, JSON.stringify(object));
   }
 
@@ -172,15 +138,14 @@ function testImage(url: string, timeout: number, callback: (url: string, status:
 }
 
 export class ObjectWrapper {
-  etag: string = '';
   object: any;
-  dateSaved: Date = new Date();
+  dateSaved?: Date;
 
   static fromJSON(wrapperJson: any): ObjectWrapper {
     if (!wrapperJson) { return new ObjectWrapper(); }
 
     const objectWrapper: ObjectWrapper = new ObjectWrapper();
-    objectWrapper.etag = wrapperJson.etag;
+    objectWrapper.dateSaved = new Date(wrapperJson.dateSaved);
     objectWrapper.object = wrapperJson.object;
 
     return objectWrapper;
