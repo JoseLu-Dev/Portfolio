@@ -2,10 +2,20 @@
     "NAVBAR": {
         "projects": "Projects",
         "skills": "Skills",
+        "aboutMe": "About me",
         "contact": "Contact"
     },
     "INTRODUCTION": {
         "greetings": "HELLO, MY NAME IS",
         "description": "And I am a Full Stack Web Developer"
+    },
+    "PROJECTS":{
+        "title": "Proyects/github repositories"
+    },
+    "SKILLS":{
+        "title": "Technologies I've worked with:"
+    },
+    "ABOUT-ME":{
+        "text": ""
     }
 }
