@@ -1,3 +1,5 @@
+import { NightModeService } from './../../services/night-mode.service';
+import { environment } from './../../../environments/environment.prod';
 import { Repo } from './repo-model';
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from './projects.service';
@@ -11,7 +13,9 @@ export class ProjectsComponent implements OnInit {
 
   projects: any;
 
-  constructor(private projectService: ProjectsService) { }
+  constructor(
+    private projectService: ProjectsService,
+    private nightModeService: NightModeService) { }
 
   ngOnInit(): void {
     this.getProjectsData();
@@ -25,4 +29,11 @@ export class ProjectsComponent implements OnInit {
     })
   }
 
+  getUserGithubName(): string{
+    return environment.githubUserName;
+  }
+
+  getUserRepoLogo(): string{
+    return this.projectService.getUserRepoBrandImage(this.nightModeService.nightMode);
+  }
 }

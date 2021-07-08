@@ -4,9 +4,7 @@ export interface Repo {
     description: string;
     homepage: string;
 
-    stargazers_url: string;
     stargazers_count: number;
-    forks_url: string;
     forks_count: number;
 
     topics: string[];
