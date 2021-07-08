@@ -125,6 +125,16 @@ export class GithubApiCacheService {
       );
   }
 
+  getRepoBrandImage(repoName: string, callback: (url: string) => void): void {
+    testImage(`${environment.githubRawContentUrl}/${environment.githubUserName}/${repoName}/master/resources/logo.svg`, 700, (url, status) => {
+      if (status == 'success') {
+        callback(url);
+        return;
+      }
+      callback(`${environment.githubRawContentUrl}/${environment.githubUserName}/${repoName}/master/resources/logo.png`)
+    })
+  }
+
   getObjectSaved(id: string): ObjectWrapper {
     return ObjectWrapper.fromJSON(JSON.parse(localStorage.getItem(id) as string));
   }
@@ -133,6 +143,32 @@ export class GithubApiCacheService {
     localStorage.setItem(id, JSON.stringify(object));
   }
 
+}
+
+function testImage(url: string, timeout: number, callback: (url: string, status: string) => void) {
+  timeout = timeout || 5000;
+  var timedOut = false, timer: any;
+  var img = new Image();
+  img.onerror = img.onabort = function () {
+    if (!timedOut) {
+      clearTimeout(timer);
+      callback(url, "error");
+    }
+  };
+  img.onload = function () {
+    if (!timedOut) {
+      clearTimeout(timer);
+      callback(url, "success");
+    }
+  };
+  img.src = url;
+  timer = setTimeout(function () {
+    timedOut = true;
+    // reset .src to invalid URL so it stops previous
+    // loading, but doesn't trigger new load
+    img.src = "//!!!!/test.jpg";
+    callback(url, "timeout");
+  }, timeout);
 }
 
 export class ObjectWrapper {
