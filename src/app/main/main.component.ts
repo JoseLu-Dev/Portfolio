@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
-import { toArray } from 'rxjs/operators';
 import { ComponentInScreenService } from './services/component-in-screen.service';
 
 const areas = 'introduction, projects, skills, aboutMe, contact'
@@ -34,11 +33,13 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 }
 
+const NAVBAR_HEIGHT = 64;
+
 function isElementInViewport(el: any) {
   var rect = el.getBoundingClientRect();
 
   return (
-    rect.bottom >= 0 &&
+    rect.bottom >= 0 + NAVBAR_HEIGHT &&
     rect.right >= 0 &&
     rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
     rect.left <= (window.innerWidth || document.documentElement.clientWidth)
