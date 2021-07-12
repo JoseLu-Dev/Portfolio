@@ -1,7 +1,6 @@
 export interface Repo {
     name: string;
     html_url: string;
-    description: string;
     homepage: string;
 
     stargazers_count: number;
@@ -9,6 +8,13 @@ export interface Repo {
 
     topics: string[];
 
-    presentationImage: string
+    presentationImage: string;
     imagesUrl: string[];
+
+    es: RepoText;
+    en: RepoText;
+}
+
+interface RepoText{
+    description: string;
 }

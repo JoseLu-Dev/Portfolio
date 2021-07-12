@@ -41,7 +41,7 @@
         [ngClass]="{'flex justify-center items-center': !project.imagesUrl, 'flex-col': project.imagesUrl}">
 
         <p [ngClass]="{'sm:text-2xl mx-4': !project.imagesUrl, 'md:text-lg': project.imagesUrl}"
-            class="text-justify text-white">{{project.description}}</p>
+            class="text-justify text-white">{{getRepoDescription(project)}}</p>
 
         <div class="mt-4 mb-4 flex content-center justify-center h-auto w-full" *ngIf="project.imagesUrl">
             <div *ngIf="project.imagesUrl.length === 1 else swiper">
