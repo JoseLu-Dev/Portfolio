@@ -1,18 +1,22 @@
-<h4 class="dark:text-white text-center mb-4 sm:mb-8">{{'PROJECTS.title' | translate}}</h4>
+<div class="mt-16">
+    <h4 class="dark:text-white text-center mb-4 sm:mb-8">{{'PROJECTS.title' | translate}}</h4>
 
-<div class="flex flex-wrap gap-10 md:gap-24 justify-around md:p-12">
+    <div class="flex flex-wrap gap-10 md:gap-24 justify-around md:p-12">
 
-    <div *ngFor="let project of projects" class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <ng-container [ngTemplateOutlet]="front" [ngTemplateOutletContext]="{project:project}"></ng-container>
-            </div>
-            <div class="flip-card-back">
-                <ng-container [ngTemplateOutlet]="back" [ngTemplateOutletContext]="{project:project}"></ng-container>
+        <div *ngFor="let project of projects" class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <ng-container [ngTemplateOutlet]="front" [ngTemplateOutletContext]="{project:project}">
+                    </ng-container>
+                </div>
+                <div class="flip-card-back">
+                    <ng-container [ngTemplateOutlet]="back" [ngTemplateOutletContext]="{project:project}">
+                    </ng-container>
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 
 <!--Front side of the card-->
@@ -45,16 +49,16 @@
 
         <div class="mt-4 mb-4 flex content-center justify-center h-auto w-full" *ngIf="project.imagesUrl">
             <div *ngIf="project.imagesUrl.length === 1 else swiper">
-                <img src="{{project.imagesUrl[0].download_url}}" alt="{{project.imagesUrl[0].name}}" 
-                class="rounded max-h-36 md:max-h-80">
+                <img src="{{project.imagesUrl[0].download_url}}" alt="{{project.imagesUrl[0].name}}"
+                    class="rounded max-h-36 md:max-h-80">
             </div>
 
             <ng-template #swiper>
                 <swiper [slidesPerView]="1" [pagination]="{clickable: true}" [autoplay]="true">
 
                     <ng-template *ngFor="let image of project.imagesUrl" swiperSlide>
-                        <img src="{{image.download_url}}" alt="{{image.name}}" 
-                        class="rounded max-h-36 md:max-h-80 w-full py-auto">
+                        <img src="{{image.download_url}}" alt="{{image.name}}"
+                            class="rounded max-h-36 md:max-h-80 w-full py-auto">
                     </ng-template>
 
                 </swiper>
