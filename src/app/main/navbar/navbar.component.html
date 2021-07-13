@@ -32,7 +32,8 @@
             <div class="flex flex-1 absolute md:block right-1/2 translate-x-1/2 md:right-0 md:translate-x-0 md:static md:items-stretch md:justify-start"
                 [ngClass]="{'block': !showMenu, 'hidden': showMenu}">
                 <div class="flex-shrink-0 flex items-center">
-                    <a [ngClass]="{'scale-110 rounded-full border-4 border-blue': componentInScreen == 'introduction'}" class="h-10 w-10" href="#introduction">
+                    <a [ngClass]="{'scale-110 rounded-full border-4 border-blue': componentInScreen == 'introduction'}"
+                        class="h-10 w-10" href="#introduction">
                         <img class="rounded-full hidden dark:block w-full h-full" src="assets/jld_day.png"
                             alt="Workflow">
                         <img class="rounded-full block dark:hidden w-full h-full" src="assets/jld_night.png"
@@ -56,16 +57,16 @@
                 <div class="flex space-x-4">
 
                     <a href="#projects" [ngClass]="{'bg-blue text-white': componentInScreen == 'projects'}"
-                    class="nav-button text-md dark:text-white">{{'NAVBAR.projects' | translate}}</a>
+                        class="nav-button text-md dark:text-white">{{'NAVBAR.projects' | translate}}</a>
 
                     <a href="#skills" [ngClass]="{'bg-blue text-white': componentInScreen == 'skills'}"
-                    class="nav-button text-md dark:text-white">{{'NAVBAR.skills' | translate}}</a>
+                        class="nav-button text-md dark:text-white">{{'NAVBAR.skills' | translate}}</a>
 
                     <a href="#aboutMe" [ngClass]="{'bg-blue text-white': componentInScreen == 'aboutMe'}"
-                    class="nav-button text-md dark:text-white">{{'NAVBAR.aboutMe' | translate}}</a>
+                        class="nav-button text-md dark:text-white">{{'NAVBAR.aboutMe' | translate}}</a>
 
                     <a href="#contact" [ngClass]="{'bg-blue text-white': componentInScreen == 'contact'}"
-                    class="nav-button text-md dark:text-white">{{'NAVBAR.contact' | translate}}</a>
+                        class="nav-button text-md dark:text-white">{{'NAVBAR.contact' | translate}}</a>
 
                 </div>
             </div>
@@ -77,20 +78,23 @@
         class="md:hidden transition-all duration-700 ease-in-out overflow-hidden opacity-80 " id="mobile-menu">
         <div class="p-2 pt-0 flex flex-col gap-1">
 
-            <a href="#projects" (click)="toggleNavbar()" [ngClass]="{'bg-blue text-white': componentInScreen == 'projects'}"
+            <a href="#projects" (click)="toggleNavbar()"
+                [ngClass]="{'bg-blue text-white': componentInScreen == 'projects'}"
                 class="nav-button text-base dark:text-white">{{'NAVBAR.projects' | translate}}</a>
             <div class="separator"></div>
 
             <a href="#skills" (click)="toggleNavbar()" [ngClass]="{'bg-blue text-white': componentInScreen == 'skills'}"
-            class="nav-button text-base dark:text-white">{{'NAVBAR.skills' | translate}}</a>
+                class="nav-button text-base dark:text-white">{{'NAVBAR.skills' | translate}}</a>
             <div class="separator"></div>
 
-            <a href="#aboutMe" (click)="toggleNavbar()" [ngClass]="{'bg-blue text-white': componentInScreen == 'aboutMe'}"
-            class="nav-button text-base dark:text-white">{{'NAVBAR.aboutMe' | translate}}</a>
+            <a href="#aboutMe" (click)="toggleNavbar()"
+                [ngClass]="{'bg-blue text-white': componentInScreen == 'aboutMe'}"
+                class="nav-button text-base dark:text-white">{{'NAVBAR.aboutMe' | translate}}</a>
             <div class="separator"></div>
 
-            <a href="#contact" (click)="toggleNavbar()" [ngClass]="{'bg-blue text-white': componentInScreen == 'contact'}"
-            class="nav-button text-base dark:text-white">{{'NAVBAR.contact' | translate}}</a>
+            <a href="#contact" (click)="toggleNavbar()"
+                [ngClass]="{'bg-blue text-white': componentInScreen == 'contact'}"
+                class="nav-button text-base dark:text-white">{{'NAVBAR.contact' | translate}}</a>
         </div>
     </div>
 </nav>
@@ -135,9 +139,10 @@
             class="pl-2 pr-1 py-1 rounded-md bg-white dark:bg-dark-darkest dark:text-white w-20 text-base mr-6 shadow">
             <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
                 <div *ngIf="index != 0" class="separator"></div>
-                <div class="dark:bg-dark-darkest dark:text-white text-base px-4 py-2 bg-white hover:bg-blue dark:hover:bg-blue"
+                <div class="flex gap-1 dark:bg-dark-darkest dark:text-white text-base px-4 py-2 bg-white hover:bg-blue dark:hover:bg-blue"
                     [ngClass]="{'border-l-4 border-blue': item == languageControl.value}">
-                    {{item}}
+                    <p>{{item}}</p>
+                    <img class="w-5 h-5 self-center" src="assets/icons/{{item}}_flag.png" alt="{{item}} flag">
                 </div>
 
             </ng-template>
