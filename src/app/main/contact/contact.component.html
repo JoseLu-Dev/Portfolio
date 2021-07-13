@@ -1,0 +1,45 @@
+<div class="min-h-screen pt-16 p-4 flex flex-col">
+
+    <div class="flex flex-col w-full md:mb-0 md:w-auto md:mx-auto place-content-center flex-grow">
+
+        <h4 class="text-center dark:text-white mb-4">{{'CONTACT-ME.title' | translate}}</h4>
+
+        <form action="https://formsubmit.co/4b06539c6c52ab37089058bf970a2989" method="POST" 
+        class="flex flex-col flex-wrap content-center gap-5 p-6 bg-light-light dark:bg-dark-dark shadow-md rounded-md">
+
+            <div class="relative w-auto">
+                <input id="subject" type="text" name="subject" class="px-2 dark:text-white dark:bg-dark-darkest"/>
+                <label for="subject"
+                    class="dark:text-white label-top-input absolute left-2 px-1 bg-light-lightest rounded-md dark:bg-dark-darkest">
+                    {{'CONTACT-ME.subject' | translate}}
+                </label>
+            </div>
+
+            <div class="relative">
+                <input id="name" type="text" name="name" class="px-2 dark:text-white dark:bg-dark-darkest" />
+                <label for="name"
+                    class="dark:text-white label-top-input absolute left-2 px-1 bg-light-lightest rounded-md dark:bg-dark-darkest">
+                    {{'CONTACT-ME.name' | translate}}
+                </label>
+            </div>
+
+            <div class="relative">
+                <input id="address" type="text" name="address" class="px-2 dark:text-white dark:bg-dark-darkest" />
+                <label for="address"
+                    class="dark:text-white label-top-input absolute left-2 px-1 bg-light-lightest rounded-md dark:bg-dark-darkest">
+                    {{'CONTACT-ME.address' | translate}}
+                </label>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="message" class="text-lg mb-2 dark:text-white">
+                    {{'CONTACT-ME.message' | translate}}
+                </label>
+                <textarea id="message" type="text" name="message" class="dark:bg-dark-darkest dark:text-white"></textarea>
+            </div>
+
+            <button type="submit" class="rounded-md bg-blue text-white w-16 p-2 mx-auto">Send</button>
+
+        </form>
+    </div>
+</div>

@@ -14,6 +14,7 @@ import { ValuePipe } from './pipes/value.pipe';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { SwiperModule } from 'swiper/angular';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SwiperModule } from 'swiper/angular';
       KeysPipe,
       ValuePipe,
       ProjectsComponent,
-      AboutMeComponent
+      AboutMeComponent,
+      ContactComponent
     ],
   imports: [
     CommonModule,

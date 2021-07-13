@@ -19,5 +19,13 @@
         "title":"About me",
         "greetings": "Hey, I am José Luis",
         "text": "I've just finished a Multi platform Apps Development course. I love learning new technologies and test myself doing projects. I am seeking to develop myself professionally and to find my place on the industry."
+    },
+    "CONTACT-ME":{
+        "title": "Contact me",
+        "subject": "Subject",
+        "name": "Name",
+        "address": "Address",
+        "message": "Message",
+        "send": "Send"
     }
 }

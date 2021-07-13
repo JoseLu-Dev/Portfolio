@@ -1,0 +1,25 @@
+input {
+    @apply p-2 rounded-md outline-none focus:ring-blue focus:ring-2 border-transparent
+    md:text-lg lg:text-2xl focus:border-transparent
+}
+
+.input-invalid {
+    @apply outline-none ring-2 ring-red-500 border-transparent
+}
+
+textarea {
+    @apply p-2 rounded-md border-transparent focus:border-transparent h-24 md:h-32
+    appearance-none leading-tight resize-none outline-none focus:ring-blue focus:ring-2
+}
+
+.label-top-input {
+    top: 0%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+.empty input:not(:focus)+label {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+}
