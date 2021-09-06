@@ -91,7 +91,7 @@ export class GithubApiCacheService {
   }
 
   getRepoBrandImage(repoName: string, callback: (url: string) => void): void {
-    const IMAGE_LOAD_TIMEOUT = 2000
+    const IMAGE_LOAD_TIMEOUT = 4000
     testImage(`${environment.githubRawContentUrl}/${environment.githubUserName}/${repoName}/master/resources/logo.svg`, IMAGE_LOAD_TIMEOUT, (url, status) => {
       if (status == 'success') {
         callback(url);
