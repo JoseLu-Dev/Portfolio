@@ -35,7 +35,6 @@ export class ProjectsComponent implements OnInit {
     this.projectService.getUserRepos().subscribe(projects => {
       projects.sort((first: Repo, second: Repo) => { return first.stargazers_count > second.stargazers_count ? -1 : 1 })
       this.projects = projects;
-      console.log(projects)
     })
   }
 
