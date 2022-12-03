@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { take, map, switchMap, catchError } from 'rxjs/operators';
+import { take, map, switchMap, catchError, filter } from 'rxjs/operators';
 import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { Repo } from './repo-model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -27,6 +27,7 @@ export class GithubApiCacheService {
 
     return this.http.get<Repo[]>(this.userReposUrl)
       .pipe(
+        map(e=> e.filter(e=>e.topics.includes('portfolio-project'))),
         map(res => {
           const objectWrapper = new ObjectWrapper();
           objectWrapper.object = res;
